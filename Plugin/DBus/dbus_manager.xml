@@ -1,0 +1,60 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.OpenWallpaper.DBusManager">
+    <signal name="playSignal">
+      <arg name="arg" type="i" direction="out"/>
+    </signal>
+    <signal name="volumeSignal">
+      <arg name="volume" type="d" direction="out"/>
+    </signal>
+    <signal name="changePackageSignal">
+      <arg name="package" type="s" direction="out"/>
+    </signal>
+    <signal name="debugSignal">
+      <arg name="arg" type="s" direction="out"/>
+    </signal>
+    <signal name="changeConfigSignal">
+      <arg name="param" type="i" direction="out"/>
+      <arg name="value" type="s" direction="out"/>
+    </signal>
+    <signal name="restoreConfigSignal">
+    </signal>
+    <signal name="restoreSuccessfulSignal">
+    </signal>
+    <signal name="lastPackageRequestSignal">
+    </signal>
+    <signal name="lastPackageSignal">
+      <arg name="path" type="s" direction="out"/>
+    </signal>
+    <signal name="volumeRequestSignal">
+    </signal>
+    <signal name="volumeToManagerSignal">
+      <arg name="value" type="d" direction="out"/>
+    </signal>
+    <method name="setPlaySlot">
+      <arg name="arg" type="i" direction="in"/>
+    </method>
+    <method name="setVolumeSlot">
+      <arg name="volume" type="d" direction="in"/>
+    </method>
+    <method name="setPackageSlot">
+      <arg name="package" type="s" direction="in"/>
+    </method>
+    <method name="debugSlot">
+      <arg name="Arg" type="s" direction="in"/>
+    </method>
+    <method name="changeConfigSlot">
+      <arg name="param" type="i" direction="in"/>
+      <arg name="value" type="s" direction="in"/>
+    </method>
+    <method name="restoreConfigSlot">
+    </method>
+    <method name="restoreSuccessfulSlot">
+    </method>
+    <method name="getLastPackageRequestSlot">
+    </method>
+    <method name="getVolumeRequestSlot">
+    </method>
+  </interface>
+</node>
+

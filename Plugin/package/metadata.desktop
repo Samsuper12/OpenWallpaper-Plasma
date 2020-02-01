@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=OpenWallpaper Plasma
+Comment=
+
+Type=Service
+Icon=plasma
+X-KDE-ServiceTypes=Plasma/Wallpaper
+
+X-KDE-PluginInfo-Author=Michael Skorokhodov
+X-KDE-PluginInfo-Email=bakaprogramm29@gmail.com
+X-KDE-PluginInfo-Name=org.openwallpaper.plasma
+X-KDE-PluginInfo-License=GPLv3+
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=https://github.com/Samsuper12/OpenWallpaper-Plasma
+X-Plasma-MainScript=ui/main.qml
