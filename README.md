@@ -67,7 +67,7 @@ First you need download develop dependencies:
 
 Now when all the necessary packages are installed, you can proceed with the compilation and installation.
 
-Go to the Open Wallpaper Plasma project directory and run the terminal. Now you should create a folder and enter it.
+Clone repository with `--recursive`. Go to the Open Wallpaper Plasma project directory and run the terminal. Now you should create a folder and enter it.
 
 ```console
 # mkdir build && cd build
