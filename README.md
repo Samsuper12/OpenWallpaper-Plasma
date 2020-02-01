@@ -134,7 +134,7 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 
 ## Acknowledgments
 
-* Andrew Origin - help with README
+* [Andrew Origin][andrew_milashka] - help with README
 * [Arch linux][telegram_arch_ru] comminity on Telegram - good advices about Linux
 * [KDE Plasma][telegram_kde_ru] community on Telegram - ideas
 * [Bogdan Kachura][telegram_bogdan] - help with reddit
@@ -168,6 +168,7 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 [michael_twitter]: https://twitter.com/Samsuris4
 [michael_gh_link]: https://github.com/ADD_LINK
 [felix_gh_link]: https://github.com/acidicMercury8
+[andrew_milashka]: https://github.com/Andrew-Origin
 [reddit_link]: https://www.reddit.com/r/OpenWallpaper/
 [telegram_arch_ru]: https://t.me/ArchLinuxChatRU
 [telegram_kde_ru]: https://t.me/kde_ru
