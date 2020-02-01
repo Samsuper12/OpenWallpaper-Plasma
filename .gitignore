@@ -1,0 +1,15 @@
+/build
+*.d
+*.slo
+*.lo
+*.o
+*.obj
+*.so
+*.lai
+*.la
+*.a
+*.lib
+*.out
+
+
+

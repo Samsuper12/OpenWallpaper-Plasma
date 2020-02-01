@@ -1,0 +1,3 @@
+[submodule "Plugin/Simple_parser"]
+	path = Plugin/Simple_parser
+	url = https://github.com/Samsuper12/Simple_parser.git
