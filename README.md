@@ -1,7 +1,7 @@
 ﻿
 # OpenWallpaper Plasma - Plugin for [KDE Plasma][kde_link]
 
-This is the complete source code and builds instructions for the OpenWallpaper Plasma. We recommend you to use the [OpenWallpaper Manager][wallpaper_manager_link] to have the best user experience. Video demonstration: [YouTube][youtube_plasma]
+This is the complete source code and builds instructions for the OpenWallpaper Plasma. We recommend you to use the [OpenWallpaper Manager][wallpaper_manager_link] to have the best user experience. Video demonstration: [YouTube][youtube_plasma] | [KDE Store][kde_store]
 
 ## Description
 
@@ -157,6 +157,7 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 [qt_miltimedia]: https://doc.qt.io/qt-5/qtmultimedia-qmlmodule.html
 [license]: LICENSE
 
+[kde_store]: https://store.kde.org/p/1356228/
 [blink]: https://github.com/Samsuper12/Blink
 [winter]: https://github.com/Samsuper12/Winter
 [sunset]: https://github.com/Samsuper12/Sunset
