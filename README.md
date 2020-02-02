@@ -84,7 +84,7 @@ Start building the project:
 ```console
 # cmake --build . 
 ```
-if you have more than 2 CPU cores or threads you can write `-- -jХ` where X will be a number of cores/threads. Example: `cmake --build. -- -j4` 
+if you have more than 2 CPU cores or threads you can write `-- -jХ` where X will be a number of cores/threads. Example: `cmake --build . -- -j4` 
 
 Read CMake output and if the compilation was successful, you can install a plugin in the system directory with the following command:
 
