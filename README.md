@@ -91,7 +91,12 @@ Read CMake output and if the compilation was successful, you can install a plugi
 ```console
 # sudo make install
 ```
+Restart KDE Plasma:
 
+```console
+# kquitapp5 plasmashell
+# plasmashell
+```
 Success! Now you can run a plugin in Plasma Desktop Settings. Attention: the plugin doesn’t have any packages included. See the Examples above.
 
 ## System requirements
