@@ -56,73 +56,11 @@ Item {
     // idea of "double player" - https://store.kde.org/p/1316299
     // i don't know why QML classes are so... unfinished.
     
-    Rectangle {
+    VideoWallpaper {
         id: videoWallpaper;
         anchors.fill: parent;
         
         visible: false;
-        
-        QM.Video {
-            id: vidBackground;
-            anchors.fill: parent;
-            
-            autoPlay: false;
-            muted: true;
-            loops: QM.MediaPlayer.Infinite;
-        }
-        
-         QM.Video {
-            id: vidAbove;
-            anchors.fill: parent;
-            
-            autoPlay: false;
-            loops: QM.MediaPlayer.Infinite;
-        }
-        
-        function vLoop(value) {
-            vidAbove.loops = value ? QM.MediaPlayer.Infinite : 1;
-        }
-        
-        function vPause() {
-            vidAbove.pause();
-        }
-        
-        function vStop() {
-            vidBackground.stop();
-            vidAbove.stop();
-        }
-        
-        function vPlay() {
-            vidAbove.play();
-        }
-        
-        function vNew(src) {
-            vidBackground.source = src;
-            vidAbove.source = src;
-            
-            vidBackground.play();
-            vidBackground.seek(0);
-            vidBackground.pause();
-            vidAbove.play();
-        }
-        
-        function vVolume(vol) {
-            vidAbove.volume = vol;
-        }
-        
-        function vFillMode(mode) {
-            vidBackground.fillMode = mode;
-            vidAbove.fillMode = mode;
-        }
-        
-        function vClean() {
-            vidBackground.source = "";
-            vidAbove.source = "";
-        }
-        
-        Component.onDestruction: {
-            vClean();
-        }
     }
     
     AnimatedImage {
@@ -166,7 +104,7 @@ Item {
         onDebugSignalQ:         {}
         onMusicCycleChanged: {  
             if (currentType == 2) { //Video
-                //videoWallpaper.vLoop(value); // in next release
+                //videoWallpaper.loop(value); // in next release
                 return;
             }
             audioPlayer.loops = value ? QM.Audio.Infinite : 1
@@ -183,7 +121,7 @@ Item {
                 wClass.setOglPlaying(val ? 1 : 2);
                 break;
             case 2:
-                val ? videoWallpaper.vPlay() : videoWallpaper.vPause();
+                val ? videoWallpaper.play() : videoWallpaper.pause();
                 break;
             case 3: gifWallpaper.paused = !val;
                 break;
@@ -202,12 +140,12 @@ Item {
                 oglWallpaper.visible = true;
                 break;
             case 2:
-                videoWallpaper.vClean();
-                videoWallpaper.vNew("file://" + wClass.getSourcePath());
-                videoWallpaper.vFillMode(wClass.getFillMode());
+                videoWallpaper.clean();
+                videoWallpaper.open("file://" + wClass.getSourcePath());
+                videoWallpaper.fillMode(wClass.getFillMode());
                 videoWallpaper.visible = true;
-                videoWallpaper.vVolume(wClass.getStartVolume());
-                //videoWallpaper.vLoop(wClass.musicCycle);
+                videoWallpaper.setVolume(wClass.getStartVolume());
+                //videoWallpaper.loop(wClass.musicCycle);
                 break;
             case 3:
                 gifWallpaper.source = "file://" + wClass.getSourcePath();
@@ -236,10 +174,10 @@ Item {
                 wClass.setOglPlaying(0); // 0 - Stop;
                 break;
             case 2:
-                videoWallpaper.vStop();
+                videoWallpaper.stop();
                 videoWallpaper.visible = false;
-                videoWallpaper.vFillMode(0); // to default
-                videoWallpaper.vClean();
+                videoWallpaper.fillMode(0); // to default
+                videoWallpaper.clean();
                 
                 break;
             case 3:
@@ -260,7 +198,7 @@ Item {
     
     function setMusicVolume(vol) {
         if (currentType == 2) {   //Video
-            videoWallpaper.vVolume(vol);
+            videoWallpaper.setVolume(vol);
             return;
         }
         audioPlayer.volume = vol;
