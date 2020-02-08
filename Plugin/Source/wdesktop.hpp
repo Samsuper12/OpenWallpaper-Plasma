@@ -52,12 +52,14 @@ class WDesktop : public QQuickFramebufferObject
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
     
-    Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY musicSourcePathChanged) // TODO Add signal
-    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY startVolumeChanged) // TODO add signal and maybe change type to double
-    Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY sourcePathChanged) // TODO Add signal
-    Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY haveMusicChanged) // // TODO Add signal
-    Q_PROPERTY(QString dirPath READ getDir NOTIFY dirChanged) // TODO Add signal
-    Q_PROPERTY(int fillMode READ getFillMode NOTIFY fillModeChanged) // TODO Add signal
+    Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY packageChanged) // TODO Add signal
+    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO add signal and maybe change type to double
+    Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY packageChanged) // TODO Add signal
+    Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged) // // TODO Add signal
+    Q_PROPERTY(QString dirPath READ getDir NOTIFY packageChanged) // TODO Add signal
+    Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) // TODO Add signal
+    //also, add emit signal packageChanged in setPackage method
+    
     Q_PROPERTY(double volume READ CREATE_METHOD WRITE getMusicVolume NOTIFY musicVolumeChanged) // TODO Add signal
     
     const char* WP_DIR = ".openWallpaper";
