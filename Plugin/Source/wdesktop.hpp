@@ -51,7 +51,15 @@ class WDesktop : public QQuickFramebufferObject
 
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
-
+    
+    Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY musicSourcePathChanged) // TODO Add signal
+    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY startVolumeChanged) // TODO add signal and maybe change type to double
+    Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY sourcePathChanged) // TODO Add signal
+    Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY haveMusicChanged) // // TODO Add signal
+    Q_PROPERTY(QString dirPath READ getDir NOTIFY dirChanged) // TODO Add signal
+    Q_PROPERTY(int fillMode READ getFillMode NOTIFY fillModeChanged) // TODO Add signal
+    Q_PROPERTY(double volume READ CREATE_METHOD WRITE getMusicVolume NOTIFY musicVolumeChanged) // TODO Add signal
+    
     const char* WP_DIR = ".openWallpaper";
     const char* WP_PACKAGE_FILE = "wallpaper.ini";
     const char* WP_MAIN_FILE = "main.ini";
@@ -104,15 +112,16 @@ public:
     ~WDesktop() override;
     Renderer *createRenderer() const Q_DECL_OVERRIDE;
 
-    Q_INVOKABLE QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
-    Q_INVOKABLE float getStartVolume() const            {return currentConfig->startVolume; }
-    Q_INVOKABLE QString getSourcePath() const           {return currentConfig->sourcePath;  }
-    Q_INVOKABLE bool getHaveMusic() const               {return currentConfig->haveMusic;   }
-    Q_INVOKABLE QString getDir() const                  {return currentConfig->dir;         }
-    Q_INVOKABLE int getFillMode() const;
+        Q_INVOKABLE QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
+        Q_INVOKABLE float getStartVolume() const            {return currentConfig->startVolume; }
+        Q_INVOKABLE QString getSourcePath() const           {return currentConfig->sourcePath;  }
+        Q_INVOKABLE bool getHaveMusic() const               {return currentConfig->haveMusic;   }
+        Q_INVOKABLE QString getDir() const                  {return currentConfig->dir;         }
+        Q_INVOKABLE int getFillMode() const;
 
-    Q_INVOKABLE void setOglPlaying(const int state);
-    Q_INVOKABLE void setMusicVolume(double volume);
+    Q_INVOKABLE void setOglPlaying(const int state); // TODO: change
+    
+        Q_INVOKABLE void setMusicVolume(double volume);
     Q_INVOKABLE void checkFocus(QModelIndex task);
     Q_INVOKABLE void checkLastPackage();
 
