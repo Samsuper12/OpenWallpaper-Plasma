@@ -146,8 +146,8 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 
 ## Authors
 
-* [Michael Skorohkodov][michael_gh_link] - bakaprogramm@gmail.com, [twitter][michael_twitter]
-* [Felix Lewandowski][felix_gh_link] - acidicmercury8@gmail.com
+* [Michael Skorohkodov][michael_gh_link] - bakaprogramm29@gmail.com, [twitter][michael_twitter]
+* [Felix Lewandowski][felix_gh_link] - acidicmercury8@outlook.com
 
 
 [//]: # (LINKS)
