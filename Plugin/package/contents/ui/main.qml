@@ -34,7 +34,7 @@ Item {
     property real volumeFromPlasma: wallpaper.configuration.Volume;
     property string packageFromPlasma: wallpaper.configuration.Package;
     
-    onVolumeFromPlasmaChanged:      { wClass.setMusicVolume(volumeFromPlasma);    }
+    onVolumeFromPlasmaChanged:      { wClass.volume = volumeFromPlasma;    }
     onPackageFromPlasmaChanged:     { wClass.setPackage(packageFromPlasma);       }
     
     
@@ -97,9 +97,11 @@ Item {
         target: wClass;
         
         onPackageChanged:       {   enableRender();               }
-        onPackageStopped:       {   disableRender();           }
+        onPackageStopped:       {   disableRender();              }
         onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
-        onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
+        onVolumeChanged:        {   setVolume();                  }
+        //onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
+        
         onFocusChanged:         {}
         onDebugSignalQ:         {}
         onMusicCycleChanged: {  
@@ -161,7 +163,7 @@ Item {
         if (wClass.haveMusic) {
             haveMusicQml = true;
             audioPlayer.source = "file://" + wClass.musicPath;
-            setMusicVolume(wClass.startVolume);
+            setVolume();
             audioPlayer.loops = wClass.musicCycle ? QM.Audio.Infinite : 1;
             audioPlayer.play();
         }
@@ -196,11 +198,11 @@ Item {
         audioPlayer.source = "";
     }
     
-    function setMusicVolume(vol) {
+    function setVolume(vol) {
         if (currentType == 2) {   //Video
-            videoWallpaper.setVolume(vol);
+            videoWallpaper.setVolume(wClass.volume);
             return;
         }
-        audioPlayer.volume = vol;
+        audioPlayer.volume = wClass.volume;
     }
 }

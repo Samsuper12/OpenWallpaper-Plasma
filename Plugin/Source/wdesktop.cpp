@@ -211,9 +211,13 @@ void WDesktop::setOglPlaying(const int state)
 
 void WDesktop::setMusicVolume(double volume)
 {
-    emit musicVolumeSignalQ(volume);
+    //emit musicVolumeSignalQ(volume);
+    emit volumeChanged();
     mainCfg->lastVolume = volume;
-    update();
+    
+    if (renderer == renderType::ogl) {
+        update();
+    }
 }
 
 void WDesktop::checkFocus(QModelIndex task)

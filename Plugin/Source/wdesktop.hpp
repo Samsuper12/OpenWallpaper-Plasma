@@ -53,7 +53,8 @@ class WDesktop : public QQuickFramebufferObject
     Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY packageChanged)
     Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY packageChanged) // TODO: clear value, if package without music
     Q_PROPERTY(QString dirPath READ getDir NOTIFY packageChanged) 
-    Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume)// NOTIFY musicVolumeChanged) // TODO Add signal
+    
+    Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume NOTIFY volumeChanged)
     
     Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO maybe change type to double
     
@@ -155,7 +156,7 @@ signals:
    void playingSignalC(int render, bool mode); 
    void playingSignalQ(int Render, bool Mode); 
 
-   void musicVolumeSignalQ(float Volume);
+   //void musicVolumeSignalQ(float Volume);
 
    void packageChanged();
    void packageStopped();
@@ -165,6 +166,7 @@ signals:
 
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
+   void volumeChanged() const;
    
 public:
    renderState renderStatus;
