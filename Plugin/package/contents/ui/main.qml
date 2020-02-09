@@ -98,15 +98,9 @@ Item {
         
         onPackageChanged:       {   enableRender();               }
         onPackageStopped:       {   disableRender();              }
-        //onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
-        
         onPlayingChanged:       {   renderPlaying(wClass.playing) }
-            
-        onVolumeChanged:        {   setVolume();                  }
-        //onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
-        
+        onVolumeChanged:        {   setVolume();                  }  // TODO change. Must take argument 
         onFocusChanged:         {}
-        //onDebugSignalQ:         {}
         onMusicCycleChanged: {  
             if (currentType == 2) { //Video
                 //videoWallpaper.loop(value); // in next release

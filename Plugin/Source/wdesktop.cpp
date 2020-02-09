@@ -131,11 +131,8 @@ WDesktop::WDesktop(QQuickItem *parent)
 {
     setupConfigs();
 
-    //connect(this, &WDesktop::playingSignalC, this, &WDesktop::playingSignalQ);
-    //connect(this, &WDesktop::debugSignalC, this, &WDesktop::debugSignalQ);
     connect(&dBus, &DBusManager::changeConfigSignal, this, &WDesktop::changeMainCfg);
     connect(&dBus, &DBusManager::changePackageSignal, this, &WDesktop::setPackage);
-    
     connect(&dBus, &DBusManager::playSignal, this, &WDesktop::setPlaying); // WARNING type int. change to bool
     
     //connect(&dBus, &DBusManager::debugSignal, this, &WDesktop::testSlot); // FIXME
@@ -196,21 +193,6 @@ void WDesktop::setGlState(int state)
 {
     renderStatus = static_cast<renderState>(state); //FIXME
     emit glStateChanged();
-    
-    //switch (state) {
-    //case 0:
-        //renderStatus = renderState::stop;
-        //break;
-    //case 1:
-        //renderStatus = renderState::play;
-        //break;
-    //case 2:
-        //renderStatus = renderState::pause;
-        //break;
-   // default:
-        //break;
-    //}
-
     update();
 }
 
@@ -439,7 +421,6 @@ void WDesktop::setPackage(QString path)
     renderer = currentConfig->type;
 
     if (currentConfig->type == renderType::ogl) { // FIXME
-        //renderStatus = renderState::change;
         setGlState(renderState::change);
     }
 
@@ -455,19 +436,4 @@ void WDesktop::setPlaying(int value) // FIXME change with dbus refactoring
     
     emit playingChanged();
     update();
-    
-    //if (value > 0) {
-        //emit playingSignalC(renderer, true);
-       // musicPlay = true;
-      //  update();
-     //   return;
-    //}
-
-    //emit playingSignalC(renderer, false);
-    //musicPlay = false;
-    //update();
 }
-
-//void WDesktop::testSlot()
-//{
-//}

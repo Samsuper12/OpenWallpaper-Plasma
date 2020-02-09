@@ -53,18 +53,12 @@ class WDesktop : public QQuickFramebufferObject
     Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY packageChanged)
     Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY packageChanged) // TODO: clear value, if package without music
     Q_PROPERTY(QString dirPath READ getDir NOTIFY packageChanged) 
-    
     Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume NOTIFY volumeChanged)
-    
     Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO change type to double
-    
-    Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
-    
     Q_PROPERTY(int type READ getPackageType NOTIFY packageChanged)
     Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) 
-    
-    Q_PROPERTY( int glState READ getGlState WRITE setGlState NOTIFY glStateChanged)
-    
+    Q_PROPERTY(int glState READ getGlState WRITE setGlState NOTIFY glStateChanged)
+    Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
     Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged)
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
@@ -117,6 +111,7 @@ class WDesktop : public QQuickFramebufferObject
     };
 
 public:
+    
     explicit WDesktop(QQuickItem *parent = nullptr);
     ~WDesktop() override;
     Renderer *createRenderer() const Q_DECL_OVERRIDE;
@@ -125,64 +120,48 @@ public:
     Q_INVOKABLE QString getDir() const                  {return currentConfig->dir;         }
         
     Q_INVOKABLE void setGlState(int state); // TODO: change
-    int getGlState() const { return renderStatus; }
-    
-    
     Q_INVOKABLE void checkFocus(QModelIndex task);
     Q_INVOKABLE void checkLastPackage();
 
     bool getFocus() const;
     
-    bool getPlaying() const { return playing; }
-
 private:
     
     QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
     double getMusicVolume() const           {return mainCfg->lastVolume;        }
     float getStartVolume() const            {return (float)currentConfig->startVolume; } // FIXME
     int getPackageType() const              {return currentConfig->type;        }
+    int getGlState() const                  {return renderStatus;               }
     bool getHaveMusic() const               {return currentConfig->haveMusic;   }
-    int getFillMode() const;
-    void setMusicVolume(double volume); // TODO: change //
+    bool getPlaying() const                 {return playing;                    } //TODO maybe move playing to mainCfg?
     
+    void setMusicVolume(double volume); // TODO: change //
     void restoreConfig(const std::string& path, const std::string& text);
     void hideRenderer(renderType type);
     void setupConfigs();
-
     void setMusicCycle(bool value);
+    
+    int getFillMode() const;
     bool getMusicCycle() const;
-
+    
 public slots:
+    
     void changeMainCfg(int param, QString value);
     void setPackage(QString path);
     void setPlaying(int value);
 
-    //void testSlot();
-
 signals:
-   //Postfix C - local C++ signal;
-   //Postfix Q - emited signal from C to QML layer;
-    
-   //void playingSignalC(int render, bool mode); 
-   //void playingSignalQ(int Render, bool Mode); 
-
-   //void musicVolumeSignalQ(float Volume);
 
    void packageChanged();
    void packageStopped();
-   
-   //void debugSignalC();
-   //void debugSignalQ();
-
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
    void volumeChanged() const;
-   
    void glStateChanged() const;
-   
    void playingChanged() const;
    
 public:
+    
    renderState renderStatus;
    MainConfig* mainCfg;
 
@@ -190,6 +169,7 @@ public:
    bool musicPlay = false;
 
 private:
+    
    std::unique_ptr<PackageConfig> currentConfig;
    std::map<std::string, renderType> renderMap;
 
@@ -202,7 +182,6 @@ private:
    DBusManager dBus;
 
    bool focus = false;
-   
    bool playing = true;
 };
 
