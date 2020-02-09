@@ -131,11 +131,13 @@ WDesktop::WDesktop(QQuickItem *parent)
 {
     setupConfigs();
 
-    connect(this, &WDesktop::playingSignalC, this, &WDesktop::playingSignalQ);
+    //connect(this, &WDesktop::playingSignalC, this, &WDesktop::playingSignalQ);
     connect(this, &WDesktop::debugSignalC, this, &WDesktop::debugSignalQ);
     connect(&dBus, &DBusManager::changeConfigSignal, this, &WDesktop::changeMainCfg);
     connect(&dBus, &DBusManager::changePackageSignal, this, &WDesktop::setPackage);
-    connect(&dBus, &DBusManager::playSignal, this, &WDesktop::setPlaying);
+    
+    connect(&dBus, &DBusManager::playSignal, this, &WDesktop::setPlaying); // WARNING type int. change to bool
+    
     connect(&dBus, &DBusManager::debugSignal, this, &WDesktop::testSlot);
 
     connect(&dBus, &DBusManager::volumeSignal, this, [&](double volume) {
@@ -445,18 +447,25 @@ void WDesktop::setPackage(QString path)
     update();
 }
 
-void WDesktop::setPlaying(int value)
+void WDesktop::setPlaying(int value) // FIXME change with dbus refactoring
 {
-    if (value > 0) {
-        emit playingSignalC(renderer, true);
-        musicPlay = true;
-        update();
-        return;
-    }
+    bool temp = value; // WARNING
 
-    emit playingSignalC(renderer, false);
-    musicPlay = false;
+    temp ? musicPlay = true : musicPlay = false;
+    
+    emit playingChanged();
     update();
+    
+    //if (value > 0) {
+        //emit playingSignalC(renderer, true);
+       // musicPlay = true;
+      //  update();
+     //   return;
+    //}
+
+    //emit playingSignalC(renderer, false);
+    //musicPlay = false;
+    //update();
 }
 
 void WDesktop::testSlot()

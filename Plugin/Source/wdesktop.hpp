@@ -58,6 +58,8 @@ class WDesktop : public QQuickFramebufferObject
     
     Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO maybe change type to double
     
+    Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
+    
     Q_PROPERTY(int type READ getPackageType NOTIFY packageChanged)
     Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) 
     
@@ -130,6 +132,8 @@ public:
     Q_INVOKABLE void checkLastPackage();
 
     bool getFocus() const;
+    
+    bool getPlaying() const { return playing; }
 
 private:
     
@@ -159,8 +163,8 @@ signals:
    //Postfix C - local C++ signal;
    //Postfix Q - emited signal from C to QML layer;
     
-   void playingSignalC(int render, bool mode); 
-   void playingSignalQ(int Render, bool Mode); 
+   //void playingSignalC(int render, bool mode); 
+   //void playingSignalQ(int Render, bool Mode); 
 
    //void musicVolumeSignalQ(float Volume);
 
@@ -175,6 +179,8 @@ signals:
    void volumeChanged() const;
    
    void glStateChanged() const;
+   
+   void playingChanged() const;
    
 public:
    renderState renderStatus;
@@ -196,6 +202,8 @@ private:
    DBusManager dBus;
 
    bool focus = false;
+   
+   bool playing = true;
 };
 
 #endif // WDESKTOP_HPP

@@ -98,7 +98,10 @@ Item {
         
         onPackageChanged:       {   enableRender();               }
         onPackageStopped:       {   disableRender();              }
-        onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
+        //onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
+        
+        onPlayingChanged:       {   renderPlaying(wClass.playing) }
+            
         onVolumeChanged:        {   setVolume();                  }
         //onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
         
@@ -117,8 +120,8 @@ Item {
         wClass.checkLastPackage();
     }
     
-    function renderPlaying(type, val) { 
-        switch (type) {
+    function renderPlaying(val) { 
+        switch (currentType) {
             case 1: 
                 wClass.glState = val ? 2 : 3;
                 break;
