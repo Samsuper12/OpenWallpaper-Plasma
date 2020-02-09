@@ -130,7 +130,7 @@ private:
     
     QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
     double getMusicVolume() const           {return mainCfg->lastVolume;        }
-    float getStartVolume() const            {return currentConfig->startVolume; }
+    float getStartVolume() const            {return (float)currentConfig->startVolume; }
     int getPackageType() const              {return currentConfig->type;        }
     bool getHaveMusic() const               {return currentConfig->haveMusic;   }
     int getFillMode() const;
@@ -157,16 +157,20 @@ signals:
    //Sometimes emit signal is not work in qml. 
    //Fix in next version
 
-   void playingSignalC(int render, bool mode);
-   void playingSignalQ(int Render, bool Mode);
+   void playingSignalC(int render, bool mode); 
+   void playingSignalQ(int Render, bool Mode); 
 
    void musicVolumeSignalQ(float Volume);
 
-   void disableSignalC(int render);
-   void disableSignalQ(int Render);
+   //void disableSignalC(int render); // WARNING: Deprecated
+   //void disableSignalQ(int Render); // WARNING: Deprecated
 
-   void enableSignalC(int render);
-   void enableSignalQ(int Render);
+   //void enableSignalC(int render); // WARNING: Deprecated
+   //void enableSignalQ(int Render); // WARNING: Deprecated
+   
+   void packageChanged();
+   void packageStopped();
+   
 
    void debugSignalC();
    void debugSignalQ();
@@ -174,7 +178,7 @@ signals:
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
    
-   void packageChanged();
+   
 
 public:
    renderState renderStatus;

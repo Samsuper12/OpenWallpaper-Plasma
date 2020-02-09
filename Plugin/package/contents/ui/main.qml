@@ -96,8 +96,10 @@ Item {
     Connections {
         target: wClass;
         
-        onDisableSignalQ:       {   disableRender(Render)         } 
-        onEnableSignalQ:        {   enableRender(Render)          }
+        onPackageChanged:       {   enableRender();               }
+        onPackageStopped:       {   disableRender();           }
+        //onDisableSignalQ:       {   disableRender(Render)         } 
+        //onEnableSignalQ:        {   enableRender(Render)          }
         onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
         onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
         onFocusChanged:         {}
@@ -134,21 +136,21 @@ Item {
         }
     }
     
-    function enableRender(type) {
-         switch (type) {
+    function enableRender() {
+         switch (wClass.type) {
             case 1: 
                 oglWallpaper.visible = true;
                 break;
             case 2:
                 videoWallpaper.clean();
-                videoWallpaper.open("file://" + wClass.getSourcePath());
-                videoWallpaper.fillMode(wClass.getFillMode());
+                videoWallpaper.open("file://" + wClass.sourcePath);
+                videoWallpaper.fillMode(wClass.fillMode);
                 videoWallpaper.visible = true;
-                videoWallpaper.setVolume(wClass.getStartVolume());
+                videoWallpaper.setVolume(wClass.startVolume);
                 //videoWallpaper.loop(wClass.musicCycle);
                 break;
             case 3:
-                gifWallpaper.source = "file://" + wClass.getSourcePath();
+                gifWallpaper.source = "file://" + wClass.sourcePath;
                 gifWallpaper.playing = true;
                 gifWallpaper.visible = true;
                 break;
@@ -156,31 +158,31 @@ Item {
             default: break;
         }
         
-        currentType = type;
+        currentType = wClass.type;
         
-        if (wClass.getHaveMusic()) {
+        if (wClass.haveMusic) {
             haveMusicQml = true;
-            audioPlayer.source = "file://" + wClass.getMusicSourcePath()
-            setMusicVolume(wClass.getStartVolume());
+            audioPlayer.source = "file://" + wClass.musicPath;
+            setMusicVolume(wClass.startVolume);
             audioPlayer.loops = wClass.musicCycle ? QM.Audio.Infinite : 1;
             audioPlayer.play();
         }
     }
     
-    function disableRender(type) {
-        switch (type) {
-            case 1: 
+    function disableRender() {
+        switch (currentType) {
+            case 1:  //ogl
                 oglWallpaper.visible = false;
                 wClass.setOglPlaying(0); // 0 - Stop;
                 break;
-            case 2:
+            case 2: //video
                 videoWallpaper.stop();
                 videoWallpaper.visible = false;
                 videoWallpaper.fillMode(0); // to default
                 videoWallpaper.clean();
                 
                 break;
-            case 3:
+            case 3: // gif
                 gifWallpaper.playing = false;
                 gifWallpaper.visible = false;
                 gifWallpaper.source = "";
