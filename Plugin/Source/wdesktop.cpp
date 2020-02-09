@@ -454,6 +454,7 @@ void WDesktop::setPackage(QString path)
     }
 
     emit enableSignalC(renderer);
+    emit packageChanged();
     update();
 }
 
