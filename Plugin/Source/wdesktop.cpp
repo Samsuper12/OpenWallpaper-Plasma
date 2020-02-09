@@ -132,8 +132,6 @@ WDesktop::WDesktop(QQuickItem *parent)
     setupConfigs();
 
     connect(this, &WDesktop::playingSignalC, this, &WDesktop::playingSignalQ);
-    //connect(this, &WDesktop::disableSignalC, this, &WDesktop::disableSignalQ);
-    //connect(this, &WDesktop::enableSignalC, this, &WDesktop::enableSignalQ);
     connect(this, &WDesktop::debugSignalC, this, &WDesktop::debugSignalQ);
     connect(&dBus, &DBusManager::changeConfigSignal, this, &WDesktop::changeMainCfg);
     connect(&dBus, &DBusManager::changePackageSignal, this, &WDesktop::setPackage);
@@ -281,27 +279,6 @@ void WDesktop::hideRenderer(renderType type)
     
     emit packageStopped();
     update();
-
-    //switch (renderer) {
-
-    //case renderType::ogl:
-        //emit disableSignalC(static_cast<int>(renderer));
-       // update();
-     //   break;
-
-   // case renderType::video:
-        //emit disableSignalC(static_cast<int>(renderer));
-      //  break;
-
-    //case renderType::gif:
-        //emit disableSignalC(static_cast<int>(renderer));
-      //  break;
-
-    //case renderType::qml:
-      //  break;
-
-    //default: break;
-    //}
 }
 
 void WDesktop::setupConfigs()
@@ -456,7 +433,6 @@ void WDesktop::setPackage(QString path)
         renderStatus = renderState::change;
     }
 
-//    emit enableSignalC(renderer);
     emit packageChanged();
     update();
 }

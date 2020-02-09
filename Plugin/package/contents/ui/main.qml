@@ -98,8 +98,6 @@ Item {
         
         onPackageChanged:       {   enableRender();               }
         onPackageStopped:       {   disableRender();           }
-        //onDisableSignalQ:       {   disableRender(Render)         } 
-        //onEnableSignalQ:        {   enableRender(Render)          }
         onPlayingSignalQ:       {   renderPlaying(Render, Mode);  }
         onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
         onFocusChanged:         {}

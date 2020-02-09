@@ -55,15 +55,13 @@ class WDesktop : public QQuickFramebufferObject
     Q_PROPERTY(QString dirPath READ getDir NOTIFY packageChanged) 
     Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume)// NOTIFY musicVolumeChanged) // TODO Add signal
     
-    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO add signal and maybe change type to double
+    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO maybe change type to double
     
     Q_PROPERTY(int type READ getPackageType NOTIFY packageChanged)
     Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) 
     Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged)
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
-    //also, add emit signal packageChanged in setPackage method
-    
     
     const char* WP_DIR = ".openWallpaper";
     const char* WP_PACKAGE_FILE = "wallpaper.ini";
@@ -130,7 +128,7 @@ private:
     
     QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
     double getMusicVolume() const           {return mainCfg->lastVolume;        }
-    float getStartVolume() const            {return (float)currentConfig->startVolume; }
+    float getStartVolume() const            {return (float)currentConfig->startVolume; } // FIXME
     int getPackageType() const              {return currentConfig->type;        }
     bool getHaveMusic() const               {return currentConfig->haveMusic;   }
     int getFillMode() const;
@@ -154,32 +152,20 @@ signals:
    //Postfix C - local C++ signal;
    //Postfix Q - emited signal from C to QML layer;
     
-   //Sometimes emit signal is not work in qml. 
-   //Fix in next version
-
    void playingSignalC(int render, bool mode); 
    void playingSignalQ(int Render, bool Mode); 
 
    void musicVolumeSignalQ(float Volume);
 
-   //void disableSignalC(int render); // WARNING: Deprecated
-   //void disableSignalQ(int Render); // WARNING: Deprecated
-
-   //void enableSignalC(int render); // WARNING: Deprecated
-   //void enableSignalQ(int Render); // WARNING: Deprecated
-   
    void packageChanged();
    void packageStopped();
    
-
    void debugSignalC();
    void debugSignalQ();
 
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
    
-   
-
 public:
    renderState renderStatus;
    MainConfig* mainCfg;
