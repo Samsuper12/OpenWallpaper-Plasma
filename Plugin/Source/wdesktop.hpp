@@ -56,7 +56,7 @@ class WDesktop : public QQuickFramebufferObject
     
     Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume NOTIFY volumeChanged)
     
-    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO maybe change type to double
+    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO change type to double
     
     Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
     
@@ -157,7 +157,7 @@ public slots:
     void setPackage(QString path);
     void setPlaying(int value);
 
-    void testSlot();
+    //void testSlot();
 
 signals:
    //Postfix C - local C++ signal;
@@ -171,8 +171,8 @@ signals:
    void packageChanged();
    void packageStopped();
    
-   void debugSignalC();
-   void debugSignalQ();
+   //void debugSignalC();
+   //void debugSignalQ();
 
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;

@@ -106,7 +106,7 @@ Item {
         //onMusicVolumeSignalQ:   {   setMusicVolume(Volume)        }
         
         onFocusChanged:         {}
-        onDebugSignalQ:         {}
+        //onDebugSignalQ:         {}
         onMusicCycleChanged: {  
             if (currentType == 2) { //Video
                 //videoWallpaper.loop(value); // in next release
