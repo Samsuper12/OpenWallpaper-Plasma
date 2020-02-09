@@ -190,21 +190,24 @@ int WDesktop::getFillMode() const
     }
 }
 
-void WDesktop::setOglPlaying(const int state)
+void WDesktop::setGlState(int state)
 {
-    switch (state) {
-    case 0:
-        renderStatus = renderState::stop;
-        break;
-    case 1:
-        renderStatus = renderState::play;
-        break;
-    case 2:
-        renderStatus = renderState::pause;
-        break;
-    default:
-        break;
-    }
+    renderStatus = static_cast<renderState>(state); //FIXME
+    emit glStateChanged();
+    
+    //switch (state) {
+    //case 0:
+        //renderStatus = renderState::stop;
+        //break;
+    //case 1:
+        //renderStatus = renderState::play;
+        //break;
+    //case 2:
+        //renderStatus = renderState::pause;
+        //break;
+   // default:
+        //break;
+    //}
 
     update();
 }
@@ -433,8 +436,9 @@ void WDesktop::setPackage(QString path)
     hideRenderer(currentConfig->type);
     renderer = currentConfig->type;
 
-    if (currentConfig->type == renderType::ogl) {
-        renderStatus = renderState::change;
+    if (currentConfig->type == renderType::ogl) { // FIXME
+        //renderStatus = renderState::change;
+        setGlState(renderState::change);
     }
 
     emit packageChanged();

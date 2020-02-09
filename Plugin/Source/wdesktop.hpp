@@ -60,6 +60,9 @@ class WDesktop : public QQuickFramebufferObject
     
     Q_PROPERTY(int type READ getPackageType NOTIFY packageChanged)
     Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) 
+    
+    Q_PROPERTY( int glState READ getGlState WRITE setGlState NOTIFY glStateChanged)
+    
     Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged)
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
@@ -119,7 +122,10 @@ public:
     Q_INVOKABLE QString getSourcePath() const           {return currentConfig->sourcePath;  }
     Q_INVOKABLE QString getDir() const                  {return currentConfig->dir;         }
         
-    Q_INVOKABLE void setOglPlaying(const int state); // TODO: change
+    Q_INVOKABLE void setGlState(int state); // TODO: change
+    int getGlState() const { return renderStatus; }
+    
+    
     Q_INVOKABLE void checkFocus(QModelIndex task);
     Q_INVOKABLE void checkLastPackage();
 
@@ -133,7 +139,7 @@ private:
     int getPackageType() const              {return currentConfig->type;        }
     bool getHaveMusic() const               {return currentConfig->haveMusic;   }
     int getFillMode() const;
-    void setMusicVolume(double volume); // TODO: change
+    void setMusicVolume(double volume); // TODO: change //
     
     void restoreConfig(const std::string& path, const std::string& text);
     void hideRenderer(renderType type);
@@ -167,6 +173,8 @@ signals:
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
    void volumeChanged() const;
+   
+   void glStateChanged() const;
    
 public:
    renderState renderStatus;

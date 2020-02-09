@@ -120,7 +120,7 @@ Item {
     function renderPlaying(type, val) { 
         switch (type) {
             case 1: 
-                wClass.setOglPlaying(val ? 1 : 2);
+                wClass.glState = val ? 2 : 3;
                 break;
             case 2:
                 val ? videoWallpaper.play() : videoWallpaper.pause();
@@ -173,7 +173,7 @@ Item {
         switch (currentType) {
             case 1:  //ogl
                 oglWallpaper.visible = false;
-                wClass.setOglPlaying(0); // 0 - Stop;
+                wClass.glState = 4; // 4 - Stop;
                 break;
             case 2: //video
                 videoWallpaper.stop();
