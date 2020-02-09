@@ -49,9 +49,20 @@ class WDesktop : public QQuickFramebufferObject
     Q_OBJECT
     Q_DISABLE_COPY(WDesktop)
 
+    
+    Q_PROPERTY(QString sourcePath READ getSourcePath NOTIFY packageChanged)
+    Q_PROPERTY(QString musicPath READ getMusicSourcePath NOTIFY packageChanged) // TODO: clear value, if package without music
+    Q_PROPERTY(QString dirPath READ getDir NOTIFY packageChanged) 
+    Q_PROPERTY(double volume READ getMusicVolume WRITE setMusicVolume)// NOTIFY musicVolumeChanged) // TODO Add signal
+    
+    Q_PROPERTY(float startVolume READ getStartVolume NOTIFY packageChanged) // TODO maybe change type to double
+    
+    Q_PROPERTY(int type READ getPackageType NOTIFY packageChanged)
+    Q_PROPERTY(int fillMode READ getFillMode NOTIFY packageChanged) 
+    Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged)
     Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
-
+    
     const char* WP_DIR = ".openWallpaper";
     const char* WP_PACKAGE_FILE = "wallpaper.ini";
     const char* WP_MAIN_FILE = "main.ini";
@@ -104,21 +115,25 @@ public:
     ~WDesktop() override;
     Renderer *createRenderer() const Q_DECL_OVERRIDE;
 
-    Q_INVOKABLE QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
-    Q_INVOKABLE float getStartVolume() const            {return currentConfig->startVolume; }
     Q_INVOKABLE QString getSourcePath() const           {return currentConfig->sourcePath;  }
-    Q_INVOKABLE bool getHaveMusic() const               {return currentConfig->haveMusic;   }
     Q_INVOKABLE QString getDir() const                  {return currentConfig->dir;         }
-    Q_INVOKABLE int getFillMode() const;
-
-    Q_INVOKABLE void setOglPlaying(const int state);
-    Q_INVOKABLE void setMusicVolume(double volume);
+        
+    Q_INVOKABLE void setOglPlaying(const int state); // TODO: change
     Q_INVOKABLE void checkFocus(QModelIndex task);
     Q_INVOKABLE void checkLastPackage();
 
     bool getFocus() const;
 
 private:
+    
+    QString getMusicSourcePath() const      {return currentConfig->musicPath;   }
+    double getMusicVolume() const           {return mainCfg->lastVolume;        }
+    float getStartVolume() const            {return (float)currentConfig->startVolume; } // FIXME
+    int getPackageType() const              {return currentConfig->type;        }
+    bool getHaveMusic() const               {return currentConfig->haveMusic;   }
+    int getFillMode() const;
+    void setMusicVolume(double volume); // TODO: change
+    
     void restoreConfig(const std::string& path, const std::string& text);
     void hideRenderer(renderType type);
     void setupConfigs();
@@ -137,26 +152,20 @@ signals:
    //Postfix C - local C++ signal;
    //Postfix Q - emited signal from C to QML layer;
     
-   //Sometimes emit signal is not work in qml. 
-   //Fix in next version
-
-   void playingSignalC(int render, bool mode);
-   void playingSignalQ(int Render, bool Mode);
+   void playingSignalC(int render, bool mode); 
+   void playingSignalQ(int Render, bool Mode); 
 
    void musicVolumeSignalQ(float Volume);
 
-   void disableSignalC(int render);
-   void disableSignalQ(int Render);
-
-   void enableSignalC(int render);
-   void enableSignalQ(int Render);
-
+   void packageChanged();
+   void packageStopped();
+   
    void debugSignalC();
    void debugSignalQ();
 
    void musicCycleChanged(bool value) const;
    void focusChanged(bool focus) const;
-
+   
 public:
    renderState renderStatus;
    MainConfig* mainCfg;
