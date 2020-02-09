@@ -82,6 +82,6 @@ Rectangle {
     }
         
     Component.onDestruction: {
-        vClean();
+        clean();
     }
 } 
