@@ -154,11 +154,11 @@ signals:
 
    void packageChanged();
    void packageStopped();
-   void musicCycleChanged(bool value) const;
-   void focusChanged(bool focus) const;
-   void volumeChanged() const;
-   void glStateChanged() const;
-   void playingChanged() const;
+   void musicCycleChanged(bool value);
+   void focusChanged(bool focus);
+   void volumeChanged();
+   void glStateChanged();
+   void playingChanged();
    
 public:
     
