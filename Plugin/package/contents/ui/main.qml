@@ -100,7 +100,7 @@ Item {
         onPackageStopped:       {   disableRender();              }
         onPlayingChanged:       {   renderPlaying(wClass.playing) }
         onVolumeChanged:        {   setVolume();                  }  // TODO change. Must take argument 
-        onFocusChanged:         {}
+        onDesktopFocusChanged:  {}
         onMusicCycleChanged: {  
             if (currentType == 2) { //Video
                 //videoWallpaper.loop(value); // in next release
