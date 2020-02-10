@@ -60,7 +60,7 @@ class WDesktop : public QQuickFramebufferObject
     Q_PROPERTY(int glState READ getGlState WRITE setGlState NOTIFY glStateChanged)
     Q_PROPERTY(bool playing READ getPlaying WRITE setPlaying NOTIFY playingChanged)
     Q_PROPERTY(bool haveMusic READ getHaveMusic NOTIFY packageChanged)
-    Q_PROPERTY(bool focus READ getFocus NOTIFY focusChanged)
+    Q_PROPERTY(bool focus READ getFocus NOTIFY desktopFocusChanged)
     Q_PROPERTY(bool musicCycle READ getMusicCycle WRITE setMusicCycle NOTIFY musicCycleChanged)
     
     const char* WP_DIR = ".openWallpaper";
@@ -155,7 +155,7 @@ signals:
    void packageChanged();
    void packageStopped();
    void musicCycleChanged(bool value);
-   void focusChanged(bool focus);
+   void desktopFocusChanged();
    void volumeChanged();
    void glStateChanged();
    void playingChanged();
