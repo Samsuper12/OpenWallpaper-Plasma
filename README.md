@@ -120,7 +120,7 @@ About QtOpenGL read in [Qt documentation][qt_opengl].
 ## Third-party
 
 * [CMake 3.10+][cmake]
-* Qt 5.10+ ([LGPL](http://doc.qt.io/qt-5/lgpl.html))
+* Qt 5.10+ ([LGPL](https://doc.qt.io/qt-5/lgpl.html))
 
 Also in the project uses materials and ideas of that projects:
 
