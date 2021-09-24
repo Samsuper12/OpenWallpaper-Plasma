@@ -1,3 +1,19 @@
+function(CHECK_DE OUT_ARG)
+    if (UNIX AND NOT APPLE)
+        message(STATUS "Target OS: Unix-like")
+        set(${OUT_ARG} $ENV{XDG_CURRENT_DESKTOP} PARENT_SCOPE)
+    elseif(WIN32)
+        message(STATUS "Target OS: Windows")
+        set(${OUT_ARG} "windows-default" PARENT_SCOPE)
+    else()
+        message(FATAL_ERROR "Unsupported OS")
+    endif()
+endfunction()
+
+check_de(OP_DE_NAME)
+
+message(STATUS "${OP_DE_NAME}")
+
 set(CMAKE_AUTOMOC ON)
 
 if(NOT CMAKE_BUILD_TYPE)
