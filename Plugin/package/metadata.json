@@ -1,0 +1,21 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "bakaprogramm29@gmail.com",
+                "Name": "Michael Skorokhodov"
+            }
+        ],
+        "Description": "OpenWallpaper Plasma is a plugin for KDE Plasma providing additional possibilities for desktop wallpaper.",
+        "Icon": "plasma",
+        "Id": "org.openwallpaper.plasma",
+        "License": "GPLv3+",
+        "Name": "OpenWallpaper Plasma",
+        "ServiceTypes": [
+            "Plasma/Wallpaper"
+        ],
+        "Version": "0.1",
+        "Website": "https://github.com/Samsuper12/OpenWallpaper-Plasma"
+    },
+    "X-Plasma-MainScript": "ui/main.qml"
+}
