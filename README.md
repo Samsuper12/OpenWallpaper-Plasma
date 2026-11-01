@@ -135,19 +135,12 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 * Creating the wiki pages with needed (as you think) information for users
 * Send an email with your idea
 * Share information about that project
-* Material help. [Donation Alerts][donate_link] and [Patreon][patreon_link]. Also, you can send hardware for testing, we'll be so thankful to you
 
 ## Acknowledgments
 
-* [Andrew Origin][andrew_milashka] - help with README
-* [Arch linux][telegram_arch_ru] comminity on Telegram - good advices about Linux
-* [KDE Plasma][telegram_kde_ru] community on Telegram - ideas
+* Andrew Origin - help with README
 * [Bogdan Kachura][telegram_bogdan] - help with reddit
 
-## Authors
-
-* [Michael Skorohkodov][michael_gh_link] - bakaprogramm29@gmail.com, [twitter][michael_twitter]
-* [Felix Lewandowski][felix_gh_link] - acidicmercury8@outlook.com
 
 
 [//]: # (LINKS)
@@ -169,15 +162,8 @@ Any help in the current moment will be very helpful. If you want to help, you ca
 [lua_wiki]: https://en.wikipedia.org/wiki/Lua_(programming_language)
 [cpp_dcl]: https://github.com/knusbaum/CPP-Dynamic-Class-Loading
 [svw]: https://store.kde.org/p/1316299/
-[donate_link]: https://www.donationalerts.com/r/redbakas
-[patreon_link]: https://www.patreon.com/Samsuris
 [michael_twitter]: https://twitter.com/Samsuris4
-[michael_gh_link]: https://github.com/ADD_LINK
-[felix_gh_link]: https://github.com/acidicMercury8
-[andrew_milashka]: https://github.com/Andrew-Origin
 [reddit_link]: https://www.reddit.com/r/OpenWallpaper/
-[telegram_arch_ru]: https://t.me/ArchLinuxChatRU
-[telegram_kde_ru]: https://t.me/kde_ru
 [telegram_bogdan]: https://t.me/desu_pair
 [youtube_plasma]: https://youtu.be/W6t2PojD7X4
 
